@@ -1,0 +1,92 @@
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <ProjectGuid>{1a0b4061-4fd3-4ec0-84f6-1c328029d878}</ProjectGuid>
+    <RootNamespace>App_Wader</RootNamespace>
+    <Name>Wader Application</Name>
+    <ManagementPackName>App_Wader</ManagementPackName>
+    <Version>1.0.0.2</Version>
+    <MpFrameworkVersion>v7.0.3</MpFrameworkVersion>
+    <MpFrameworkProfile>OM</MpFrameworkProfile>
+    <ProductVersion>1.1.0.0</ProductVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>C:\Users\graham\Source\Repos\App_Wader\z_Build\</OutputPath>
+    <GenerateSealed>True</GenerateSealed>
+    <Company>SCOMAcademy</Company>
+    <Copyright>Copyright (c) SCOMAcademy. All rights reserved.</Copyright>
+    <DelaySigning>False</DelaySigning>
+    <AssemblyOriginatorKeyFile>C:\Users\graham\Source\Repos\App_Wader\z_KeyFile\scomkey.snk</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>bin\Release\</OutputPath>
+    <DelaySigning>false</DelaySigning>
+    <Company>MyCompany</Company>
+    <Copyright>Copyright (c) MyCompany. All rights reserved.</Copyright>
+    <DelaySign>false</DelaySign>
+    <AssemblyOriginatorKeyFile />
+  </PropertyGroup>
+  <ItemGroup>
+    <ManagementPackReference Include="Microsoft.SQLServer.Core.Library">
+      <HintPath>C:\Users\graham\Source\Repos\App_Wader\References\Microsoft.SQLServer.Core.Library.mpb</HintPath>
+      <Alias>MSCL</Alias>
+      <MinVersion>7.0.38.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SQLServer.Windows.Discovery">
+      <HintPath>C:\Users\graham\Source\Repos\App_Wader\References\Microsoft.SQLServer.Windows.Discovery.mpb</HintPath>
+      <Alias>MSWD</Alias>
+      <MinVersion>7.0.38.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Library">
+      <Alias>SC</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.Windows.Library">
+      <Alias>Windows</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.Windows.Server.2016.Discovery">
+      <HintPath>C:\Users\graham\Source\Repos\App_Wader\References\Microsoft.Windows.Server.2016.Discovery.mp</HintPath>
+      <Alias>MWS2D</Alias>
+      <MinVersion>10.1.0.6</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Health.Library">
+      <Alias>Health</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.Library">
+      <Alias>System</Alias>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Visualization.Library">
+      <Alias>Visualization</Alias>
+      <PackageToBundle>false</PackageToBundle>
+    </ManagementPackReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Health Model" />
+    <Folder Include="Health Model\Discoveries" />
+    <Folder Include="Service Model\Relationships" />
+    <Folder Include="z_KeyFile" />
+    <Folder Include="z_Build" />
+    <Folder Include="Service Model" />
+    <Folder Include="Service Model\Classes" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Health Model\Discoveries\GrpPopSQLDatabase.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service Model\Classes\App_Wader_DAClasses.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Service Model\Relationships\Database.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
+</Project>

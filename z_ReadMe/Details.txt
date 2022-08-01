@@ -1,0 +1,21 @@
+Classes:
+
+App_Wader.DA
+App_Wader.DA.ComponentGroup.Databases
+
+Relationships:
+App_Wader.DA.contains.ComponentGroup.Databases
+- Target is DA 
+- Source is the Component Group Database 
+
+App_Wader.DA.ComponentGroup.Databases.ContainsSQLDatabases
+- Source is the Component Group Database
+- Target is SQL database - MSWD!Microsoft.SQLServer.Windows.Database from the SQL agnostic management packs
+
+
+Discoveries (Group Populators):
+- Discover relationship
+	- App_Wader.DA.contains.ComponentGroup.Databases
+
+Discovery class = App_Wader.DA.ComponentGroup.Databases
+Discovery relationship = 
