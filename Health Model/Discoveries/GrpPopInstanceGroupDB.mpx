@@ -1,0 +1,64 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<Monitoring>
+		<Discoveries>
+
+			<Discovery ID="App_Wader.DA.grppop.InstanceGroup.Databases.ContainsSQLDatabases" Target="App_Wader.DA.InstanceGroup.Databases" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+				<Category>Discovery</Category>
+				<DiscoveryTypes>
+					<DiscoveryClass TypeID="MSWD!Microsoft.SQLServer.Windows.Database" />
+					<DiscoveryRelationship TypeID="MSIL!Microsoft.SystemCenter.InstanceGroupContainsEntities" />
+				</DiscoveryTypes>
+				<DataSource ID="DS" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+					<RuleId>$MPElement$</RuleId>
+					<GroupInstanceId>$Target/Id$</GroupInstanceId>
+					<MembershipRules>
+						<MembershipRule>
+							<MonitoringClass>$MPElement[Name="MSWD!Microsoft.SQLServer.Windows.Database"]$</MonitoringClass>
+							<RelationshipClass>$MPElement[Name="MSIL!Microsoft.SystemCenter.InstanceGroupContainsEntities"]$</RelationshipClass>
+							<Expression>
+								<And>
+									<Expression>
+										<SimpleExpression>
+											<ValueExpression>
+												<Property>$MPElement[Name="MSCL!Microsoft.SQLServer.Core.Database"]/DatabaseName$</Property>
+											</ValueExpression>
+											<Operator>Equal</Operator>
+											<ValueExpression>
+												<Value>TestDB</Value>
+											</ValueExpression>
+										</SimpleExpression>
+									</Expression>
+									<Expression>
+										<RegExExpression>
+											<ValueExpression>
+												<HostProperty>
+													<MonitoringClass>$MPElement[Name="MSWD!Microsoft.SQLServer.Windows.DBEngine"]$</MonitoringClass>
+													<Property>$MPElement[Name="MSWD!Microsoft.SQLServer.Windows.DBEngine"]/PrincipalName$</Property>
+												</HostProperty>
+											</ValueExpression>
+											<Operator>ContainsSubstring</Operator>
+											<Pattern>scomsql</Pattern>
+										</RegExExpression>
+									</Expression>
+								</And>
+							</Expression>
+						</MembershipRule>
+					</MembershipRules>
+				</DataSource>
+			</Discovery>
+
+		</Discoveries>
+	</Monitoring>
+	<LanguagePacks>
+		<LanguagePack ID="ENU" IsDefault="true">
+			<DisplayStrings>
+
+				<DisplayString ElementID="App_Wader.DA.grppop.InstanceGroup.Databases.ContainsSQLDatabases">
+					<Name>App Wader database Instance group populator Contains SQL Databases</Name>
+					<Description>App Wader database class and relationship discovery.</Description>
+				</DisplayString>
+
+			</DisplayStrings>
+		</LanguagePack>
+	</LanguagePacks>
+</ManagementPackFragment>

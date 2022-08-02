@@ -9,7 +9,7 @@
 				<RelationshipType ID="App_Wader.DA.ComponentGroup.Databases.ContainsSQLDatabases" Base="System!System.Containment" Abstract="false" Accessibility="Internal">
 					<Source ID="Source" Type="App_Wader.DA.ComponentGroup.Databases"/>
 					<Target ID="Target" Type="MSWD!Microsoft.SQLServer.Windows.Database"/>
-				</RelationshipType>
+				</RelationshipType>				
 			</RelationshipTypes>
 		</EntityTypes>
 	</TypeDefinitions>

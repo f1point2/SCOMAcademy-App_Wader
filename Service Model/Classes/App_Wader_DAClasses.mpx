@@ -6,7 +6,7 @@
 				<!-- Distributed Application Classes - -->
 				<ClassType ID="App_Wader.DA" Base="System!System.Service" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true" />
 				<ClassType ID="App_Wader.DA.ComponentGroup.Databases" Base="System!System.Group" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true" />
-				<ClassType ID="App_Wader.DA.ComponentGroup.Websites" Base="System!System.Group" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true" />
+				<ClassType ID="App_Wader.DA.InstanceGroup.Databases" Base="MSIL!Microsoft.SystemCenter.InstanceGroup" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true" />
 
 			</ClassTypes>
 		</EntityTypes>
@@ -22,12 +22,12 @@
 				</DisplayString>
 
 				<DisplayString ElementID="App_Wader.DA.ComponentGroup.Databases">
-					<Name>Wader Databases</Name>
+					<Name>Wader Databases Component Group</Name>
 					<Description></Description>
 				</DisplayString>
 
-				<DisplayString ElementID="App_Wader.DA.ComponentGroup.Websites">
-					<Name>Wader Websites</Name>
+				<DisplayString ElementID="App_Wader.DA.InstanceGroup.Databases">
+					<Name>Wader Databases Instance Group</Name>
 					<Description></Description>
 				</DisplayString>
 

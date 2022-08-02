@@ -5,7 +5,7 @@
     <RootNamespace>App_Wader</RootNamespace>
     <Name>Wader Application</Name>
     <ManagementPackName>App_Wader</ManagementPackName>
-    <Version>1.0.0.2</Version>
+    <Version>1.0.0.13</Version>
     <MpFrameworkVersion>v7.0.3</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>
@@ -41,6 +41,11 @@
       <MinVersion>7.0.38.0</MinVersion>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.InstanceGroup.Library">
+      <HintPath>C:\Users\graham\Source\Repos\App_Wader\References\Microsoft.SystemCenter.InstanceGroup.Library.mp</HintPath>
+      <Alias>MSIL</Alias>
+      <MinVersion>7.5.8501.0</MinVersion>
+    </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.Library">
       <Alias>SC</Alias>
       <PackageToBundle>False</PackageToBundle>
@@ -65,12 +70,13 @@
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.Visualization.Library">
       <Alias>Visualization</Alias>
-      <PackageToBundle>false</PackageToBundle>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Health Model" />
     <Folder Include="Health Model\Discoveries" />
+    <Folder Include="Health Model\Monitoring" />
     <Folder Include="Service Model\Relationships" />
     <Folder Include="z_KeyFile" />
     <Folder Include="z_Build" />
@@ -78,7 +84,16 @@
     <Folder Include="Service Model\Classes" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Health Model\Discoveries\GrpPopInstanceGroupDB.mpx">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Health Model\Discoveries\GrpPopSQLDatabase.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Health Model\Monitoring\DR_Databases_InstanceGroup_DA.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Health Model\Monitoring\DR_DatabaseToDBGroup.mpx">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Service Model\Classes\App_Wader_DAClasses.mpx">

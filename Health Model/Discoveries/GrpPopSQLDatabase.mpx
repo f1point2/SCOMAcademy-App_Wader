@@ -18,7 +18,6 @@
 					</MembershipRules>
 				</DataSource>
 			</Discovery>
-
 				<Discovery ID="App_Wader.DA.grppop.ComponentGroup.Databases.ContainsSQLDatabases" Target="App_Wader.DA.ComponentGroup.Databases" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
 					<Category>Discovery</Category>
 					<DiscoveryTypes>
@@ -32,35 +31,33 @@
 							<MembershipRule>
 								<MonitoringClass>$MPElement[Name="MSWD!Microsoft.SQLServer.Windows.Database"]$</MonitoringClass>
 								<RelationshipClass>$MPElement[Name="App_Wader.DA.ComponentGroup.Databases.ContainsSQLDatabases"]$</RelationshipClass>
-
-								<Expression>
-									<And>
-										<Expression>
-											<SimpleExpression>
-												<ValueExpression>
-													<Property>$MPElement[Name="MSCL!Microsoft.SQLServer.Core.Database"]/DatabaseName$</Property>
-												</ValueExpression>
-												<Operator>Equal</Operator>
-												<ValueExpression>
-													<Value>TestDB</Value>
-												</ValueExpression>
-											</SimpleExpression>
-										</Expression>
-										<Expression>
-											<SimpleExpression>
-												<ValueExpression>
-													<Property>$MPElement[Name="Windows!Microsoft.Windows.Computer"]/DNSName$</Property>
-												</ValueExpression>
-												<Operator>Like</Operator>
-												<ValueExpression>
-													<Value>SCOMSQL%</Value>
-												</ValueExpression>
-											</SimpleExpression>
-										</Expression>
-									</And>
-								</Expression>
-								
-								
+							<Expression>
+								<And>
+									<Expression>
+										<SimpleExpression>
+											<ValueExpression>
+												<Property>$MPElement[Name="MSCL!Microsoft.SQLServer.Core.Database"]/DatabaseName$</Property>
+											</ValueExpression>
+											<Operator>Equal</Operator>
+											<ValueExpression>
+												<Value>TestDB</Value>
+											</ValueExpression>
+										</SimpleExpression>
+									</Expression>
+									<Expression>
+										<RegExExpression>
+											<ValueExpression>
+												<HostProperty>
+													<MonitoringClass>$MPElement[Name="MSWD!Microsoft.SQLServer.Windows.DBEngine"]$</MonitoringClass>
+													<Property>$MPElement[Name="MSWD!Microsoft.SQLServer.Windows.DBEngine"]/PrincipalName$</Property>
+												</HostProperty>
+											</ValueExpression>
+											<Operator>ContainsSubstring</Operator>
+											<Pattern>scomsql</Pattern>
+										</RegExExpression>
+									</Expression>
+								</And>
+							</Expression>
 							</MembershipRule>
 						</MembershipRules>
 					</DataSource>

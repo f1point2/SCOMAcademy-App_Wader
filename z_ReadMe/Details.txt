@@ -19,3 +19,6 @@ Discoveries (Group Populators):
 
 Discovery class = App_Wader.DA.ComponentGroup.Databases
 Discovery relationship = 
+
+
+Take MSIL from c:\program files (x86) \ SYstem Center Visual Studio Authoring extensions and NOT from source iso
