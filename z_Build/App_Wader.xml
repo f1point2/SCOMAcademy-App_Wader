@@ -3,7 +3,7 @@
   <Manifest>
     <Identity>
       <ID>App_Wader</ID>
-      <Version>1.0.0.20</Version>
+      <Version>1.0.0.24</Version>
     </Identity>
     <Name>Wader Application</Name>
     <References>
@@ -121,12 +121,18 @@
       <DependencyMonitor ID="App_Wader.DA.DR.InstanceGroup.DatabasesToGroup" Accessibility="Public" Enabled="true" Target="App_Wader.DA.InstanceGroup.Databases" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="MSIL!Microsoft.SystemCenter.InstanceGroupContainsEntities" MemberMonitor="Health!System.Health.AvailabilityState">
         <Category>AvailabilityHealth</Category>
         <Algorithm>WorstOf</Algorithm>
-        <MemberUnAvailable>Error</MemberUnAvailable>
       </DependencyMonitor>
       <DependencyMonitor ID="App_Wader.DA.DR.DAToInstanceGroup" Accessibility="Public" Enabled="true" Target="App_Wader.DA" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="App_Wader.DA.contains.InstanceGroup.Databases" MemberMonitor="Health!System.Health.AvailabilityState">
         <Category>AvailabilityHealth</Category>
         <Algorithm>WorstOf</Algorithm>
-        <MemberUnAvailable>Error</MemberUnAvailable>
+      </DependencyMonitor>
+      <DependencyMonitor ID="App_Wader.DA.DR.InstanceGroup.DatabasesToGroup.Perf" Accessibility="Public" Enabled="true" Target="App_Wader.DA.InstanceGroup.Databases" ParentMonitorID="Health!System.Health.PerformanceState" Remotable="true" Priority="Normal" RelationshipType="MSIL!Microsoft.SystemCenter.InstanceGroupContainsEntities" MemberMonitor="Health!System.Health.PerformanceState">
+        <Category>PerformanceHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
+      </DependencyMonitor>
+      <DependencyMonitor ID="App_Wader.DA.DR.DAToInstanceGroup.Perf" Accessibility="Public" Enabled="true" Target="App_Wader.DA" ParentMonitorID="Health!System.Health.PerformanceState" Remotable="true" Priority="Normal" RelationshipType="App_Wader.DA.contains.InstanceGroup.Databases" MemberMonitor="Health!System.Health.PerformanceState">
+        <Category>PerformanceHealth</Category>
+        <Algorithm>WorstOf</Algorithm>
       </DependencyMonitor>
     </Monitors>
   </Monitoring>
@@ -143,6 +149,14 @@
         </DisplayString>
         <DisplayString ElementID="App_Wader.DA.DR.DAToInstanceGroup">
           <Name>Roll up databasegroup health to DA - availability</Name>
+          <Description>Description for new dependency monitor.</Description>
+        </DisplayString>
+        <DisplayString ElementID="App_Wader.DA.DR.InstanceGroup.DatabasesToGroup.Perf">
+          <Name>Roll up database health to instance group health - performance</Name>
+          <Description>Description for new dependency monitor.</Description>
+        </DisplayString>
+        <DisplayString ElementID="App_Wader.DA.DR.DAToInstanceGroup.Perf">
+          <Name>Roll up databasegroup health to DA - performance</Name>
           <Description>Description for new dependency monitor.</Description>
         </DisplayString>
         <DisplayString ElementID="App_Wader.DA">
