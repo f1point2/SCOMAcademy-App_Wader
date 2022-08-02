@@ -3,7 +3,7 @@
   <Manifest>
     <Identity>
       <ID>App_Wader</ID>
-      <Version>1.0.0.19</Version>
+      <Version>1.0.0.20</Version>
     </Identity>
     <Name>Wader Application</Name>
     <References>
