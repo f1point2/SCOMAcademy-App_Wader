@@ -6,6 +6,12 @@
 				<Algorithm>WorstOf</Algorithm>
 				<MemberUnAvailable>Error</MemberUnAvailable>
 			</DependencyMonitor>
+
+			<DependencyMonitor ID="App_Wader.DA.DR.DAToInstanceGroup" Accessibility="Public" Enabled="true" Target="App_Wader.DA" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="App_Wader.DA.contains.InstanceGroup.Databases" MemberMonitor="Health!System.Health.AvailabilityState">
+				<Category>AvailabilityHealth</Category>
+				<Algorithm>WorstOf</Algorithm>
+				<MemberUnAvailable>Error</MemberUnAvailable>
+			</DependencyMonitor>
 		</Monitors>
 	</Monitoring>
 	<LanguagePacks>
@@ -15,6 +21,12 @@
 					<Name>Roll up database health to instance group health - availability</Name>
 					<Description>Description for new dependency monitor.</Description>
 				</DisplayString>
+
+				<DisplayString ElementID="App_Wader.DA.DR.DAToInstanceGroup">
+					<Name>Roll up databasegroup health to DA - availability</Name>
+					<Description>Description for new dependency monitor.</Description>
+				</DisplayString>
+				
 			</DisplayStrings>
 		</LanguagePack>
 	</LanguagePacks>

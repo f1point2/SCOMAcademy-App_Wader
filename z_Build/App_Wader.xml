@@ -3,7 +3,7 @@
   <Manifest>
     <Identity>
       <ID>App_Wader</ID>
-      <Version>1.0.0.13</Version>
+      <Version>1.0.0.19</Version>
     </Identity>
     <Name>Wader Application</Name>
     <References>
@@ -43,23 +43,35 @@
     <EntityTypes>
       <ClassTypes>
         <ClassType ID="App_Wader.DA" Base="System!System.Service" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true" />
-        <ClassType ID="App_Wader.DA.ComponentGroup.Databases" Base="System!System.Group" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true" />
         <ClassType ID="App_Wader.DA.InstanceGroup.Databases" Base="MSIL!Microsoft.SystemCenter.InstanceGroup" Accessibility="Public" Abstract="false" Hosted="false" Singleton="true" />
       </ClassTypes>
       <RelationshipTypes>
-        <RelationshipType ID="App_Wader.DA.contains.ComponentGroup.Databases" Base="System!System.Containment" Abstract="false" Accessibility="Internal">
+        <RelationshipType ID="App_Wader.DA.contains.InstanceGroup.Databases" Base="System!System.Containment" Abstract="false" Accessibility="Public">
           <Source ID="Source" Type="App_Wader.DA" />
-          <Target ID="Target" Type="App_Wader.DA.ComponentGroup.Databases" />
-        </RelationshipType>
-        <RelationshipType ID="App_Wader.DA.ComponentGroup.Databases.ContainsSQLDatabases" Base="System!System.Containment" Abstract="false" Accessibility="Internal">
-          <Source ID="Source" Type="App_Wader.DA.ComponentGroup.Databases" />
-          <Target ID="Target" Type="MSWD!Microsoft.SQLServer.Windows.Database" />
+          <Target ID="Target" Type="App_Wader.DA.InstanceGroup.Databases" />
         </RelationshipType>
       </RelationshipTypes>
     </EntityTypes>
   </TypeDefinitions>
   <Monitoring>
     <Discoveries>
+      <Discovery ID="App_Wader.DA.instgrppop" Target="App_Wader.DA" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+        <Category>Discovery</Category>
+        <DiscoveryTypes>
+          <DiscoveryClass TypeID="App_Wader.DA.InstanceGroup.Databases" />
+          <DiscoveryRelationship TypeID="App_Wader.DA.contains.InstanceGroup.Databases" />
+        </DiscoveryTypes>
+        <DataSource ID="DS" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+          <RuleId>$MPElement$</RuleId>
+          <GroupInstanceId>$Target/Id$</GroupInstanceId>
+          <MembershipRules>
+            <MembershipRule>
+              <MonitoringClass>$MPElement[Name="App_Wader.DA.InstanceGroup.Databases"]$</MonitoringClass>
+              <RelationshipClass>$MPElement[Name="App_Wader.DA.contains.InstanceGroup.Databases"]$</RelationshipClass>
+            </MembershipRule>
+          </MembershipRules>
+        </DataSource>
+      </Discovery>
       <Discovery ID="App_Wader.DA.grppop.InstanceGroup.Databases.ContainsSQLDatabases" Target="App_Wader.DA.InstanceGroup.Databases" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
         <Category>Discovery</Category>
         <DiscoveryTypes>
@@ -104,67 +116,6 @@
           </MembershipRules>
         </DataSource>
       </Discovery>
-      <Discovery ID="App_Wader.DA.grppop.ComponentGroup.Databases" Target="App_Wader.DA" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
-        <Category>Discovery</Category>
-        <DiscoveryTypes>
-          <DiscoveryClass TypeID="App_Wader.DA.ComponentGroup.Databases" />
-          <DiscoveryRelationship TypeID="App_Wader.DA.contains.ComponentGroup.Databases" />
-        </DiscoveryTypes>
-        <DataSource ID="DS" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
-          <RuleId>$MPElement$</RuleId>
-          <GroupInstanceId>$Target/Id$</GroupInstanceId>
-          <MembershipRules>
-            <MembershipRule>
-              <MonitoringClass>$MPElement[Name="App_Wader.DA.ComponentGroup.Databases"]$</MonitoringClass>
-              <RelationshipClass>$MPElement[Name="App_Wader.DA.contains.ComponentGroup.Databases"]$</RelationshipClass>
-            </MembershipRule>
-          </MembershipRules>
-        </DataSource>
-      </Discovery>
-      <Discovery ID="App_Wader.DA.grppop.ComponentGroup.Databases.ContainsSQLDatabases" Target="App_Wader.DA.ComponentGroup.Databases" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
-        <Category>Discovery</Category>
-        <DiscoveryTypes>
-          <DiscoveryClass TypeID="MSWD!Microsoft.SQLServer.Windows.Database" />
-          <DiscoveryRelationship TypeID="App_Wader.DA.ComponentGroup.Databases.ContainsSQLDatabases" />
-        </DiscoveryTypes>
-        <DataSource ID="DS" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
-          <RuleId>$MPElement$</RuleId>
-          <GroupInstanceId>$Target/Id$</GroupInstanceId>
-          <MembershipRules>
-            <MembershipRule>
-              <MonitoringClass>$MPElement[Name="MSWD!Microsoft.SQLServer.Windows.Database"]$</MonitoringClass>
-              <RelationshipClass>$MPElement[Name="App_Wader.DA.ComponentGroup.Databases.ContainsSQLDatabases"]$</RelationshipClass>
-              <Expression>
-                <And>
-                  <Expression>
-                    <SimpleExpression>
-                      <ValueExpression>
-                        <Property>$MPElement[Name="MSCL!Microsoft.SQLServer.Core.Database"]/DatabaseName$</Property>
-                      </ValueExpression>
-                      <Operator>Equal</Operator>
-                      <ValueExpression>
-                        <Value>TestDB</Value>
-                      </ValueExpression>
-                    </SimpleExpression>
-                  </Expression>
-                  <Expression>
-                    <RegExExpression>
-                      <ValueExpression>
-                        <HostProperty>
-                          <MonitoringClass>$MPElement[Name="MSWD!Microsoft.SQLServer.Windows.DBEngine"]$</MonitoringClass>
-                          <Property>$MPElement[Name="MSWD!Microsoft.SQLServer.Windows.DBEngine"]/PrincipalName$</Property>
-                        </HostProperty>
-                      </ValueExpression>
-                      <Operator>ContainsSubstring</Operator>
-                      <Pattern>scomsql</Pattern>
-                    </RegExExpression>
-                  </Expression>
-                </And>
-              </Expression>
-            </MembershipRule>
-          </MembershipRules>
-        </DataSource>
-      </Discovery>
     </Discoveries>
     <Monitors>
       <DependencyMonitor ID="App_Wader.DA.DR.InstanceGroup.DatabasesToGroup" Accessibility="Public" Enabled="true" Target="App_Wader.DA.InstanceGroup.Databases" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="MSIL!Microsoft.SystemCenter.InstanceGroupContainsEntities" MemberMonitor="Health!System.Health.AvailabilityState">
@@ -172,7 +123,7 @@
         <Algorithm>WorstOf</Algorithm>
         <MemberUnAvailable>Error</MemberUnAvailable>
       </DependencyMonitor>
-      <DependencyMonitor ID="App_Wader.DA.DR.ComponentGroup.DatabasesToGroup" Accessibility="Public" Enabled="true" Target="App_Wader.DA.ComponentGroup.Databases" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="App_Wader.DA.ComponentGroup.Databases.ContainsSQLDatabases" MemberMonitor="Health!System.Health.AvailabilityState">
+      <DependencyMonitor ID="App_Wader.DA.DR.DAToInstanceGroup" Accessibility="Public" Enabled="true" Target="App_Wader.DA" ParentMonitorID="Health!System.Health.AvailabilityState" Remotable="true" Priority="Normal" RelationshipType="App_Wader.DA.contains.InstanceGroup.Databases" MemberMonitor="Health!System.Health.AvailabilityState">
         <Category>AvailabilityHealth</Category>
         <Algorithm>WorstOf</Algorithm>
         <MemberUnAvailable>Error</MemberUnAvailable>
@@ -186,28 +137,16 @@
           <Name>App Wader database Instance group populator Contains SQL Databases</Name>
           <Description>App Wader database class and relationship discovery.</Description>
         </DisplayString>
-        <DisplayString ElementID="App_Wader.DA.grppop.ComponentGroup.Databases">
-          <Name>App Wader database component group populator</Name>
-          <Description>App Wader database component group class and relationship discovery</Description>
-        </DisplayString>
-        <DisplayString ElementID="App_Wader.DA.grppop.ComponentGroup.Databases.ContainsSQLDatabases">
-          <Name>App Wader database component group populator Contains SQL Databases</Name>
-          <Description>App Wader database class and relationship discovery.</Description>
-        </DisplayString>
         <DisplayString ElementID="App_Wader.DA.DR.InstanceGroup.DatabasesToGroup">
           <Name>Roll up database health to instance group health - availability</Name>
           <Description>Description for new dependency monitor.</Description>
         </DisplayString>
-        <DisplayString ElementID="App_Wader.DA.DR.ComponentGroup.DatabasesToGroup">
-          <Name>Roll up database health to group health - availability</Name>
+        <DisplayString ElementID="App_Wader.DA.DR.DAToInstanceGroup">
+          <Name>Roll up databasegroup health to DA - availability</Name>
           <Description>Description for new dependency monitor.</Description>
         </DisplayString>
         <DisplayString ElementID="App_Wader.DA">
           <Name>Wader Application</Name>
-          <Description></Description>
-        </DisplayString>
-        <DisplayString ElementID="App_Wader.DA.ComponentGroup.Databases">
-          <Name>Wader Databases Component Group</Name>
           <Description></Description>
         </DisplayString>
         <DisplayString ElementID="App_Wader.DA.InstanceGroup.Databases">

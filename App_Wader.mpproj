@@ -5,7 +5,7 @@
     <RootNamespace>App_Wader</RootNamespace>
     <Name>Wader Application</Name>
     <ManagementPackName>App_Wader</ManagementPackName>
-    <Version>1.0.0.13</Version>
+    <Version>1.0.0.19</Version>
     <MpFrameworkVersion>v7.0.3</MpFrameworkVersion>
     <MpFrameworkProfile>OM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>
@@ -87,13 +87,7 @@
     <Compile Include="Health Model\Discoveries\GrpPopInstanceGroupDB.mpx">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Health Model\Discoveries\GrpPopSQLDatabase.mpx">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Health Model\Monitoring\DR_Databases_InstanceGroup_DA.mpx">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Health Model\Monitoring\DR_DatabaseToDBGroup.mpx">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Service Model\Classes\App_Wader_DAClasses.mpx">

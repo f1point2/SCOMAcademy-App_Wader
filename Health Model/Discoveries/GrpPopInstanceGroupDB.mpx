@@ -2,6 +2,25 @@
 	<Monitoring>
 		<Discoveries>
 
+			<Discovery ID="App_Wader.DA.instgrppop" Target="App_Wader.DA" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
+				<Category>Discovery</Category>
+				<DiscoveryTypes>
+					<DiscoveryClass TypeID="App_Wader.DA.InstanceGroup.Databases" />
+					<DiscoveryRelationship TypeID="App_Wader.DA.contains.InstanceGroup.Databases" />
+				</DiscoveryTypes>
+				<DataSource ID="DS" TypeID="SC!Microsoft.SystemCenter.GroupPopulator">
+					<RuleId>$MPElement$</RuleId>
+					<GroupInstanceId>$Target/Id$</GroupInstanceId>
+					<MembershipRules>
+						<MembershipRule>
+							<MonitoringClass>$MPElement[Name="App_Wader.DA.InstanceGroup.Databases"]$</MonitoringClass>
+							<RelationshipClass>$MPElement[Name="App_Wader.DA.contains.InstanceGroup.Databases"]$</RelationshipClass>
+						</MembershipRule>
+					</MembershipRules>
+				</DataSource>
+			</Discovery>
+			
+			
 			<Discovery ID="App_Wader.DA.grppop.InstanceGroup.Databases.ContainsSQLDatabases" Target="App_Wader.DA.InstanceGroup.Databases" Enabled="true" ConfirmDelivery="false" Remotable="true" Priority="Normal">
 				<Category>Discovery</Category>
 				<DiscoveryTypes>

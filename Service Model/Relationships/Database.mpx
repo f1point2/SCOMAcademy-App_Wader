@@ -2,14 +2,12 @@
 	<TypeDefinitions>
 		<EntityTypes>
 			<RelationshipTypes>
-				<RelationshipType ID="App_Wader.DA.contains.ComponentGroup.Databases" Base="System!System.Containment" Abstract="false" Accessibility="Internal">
+
+				<RelationshipType ID="App_Wader.DA.contains.InstanceGroup.Databases" Base="System!System.Containment" Abstract="false" Accessibility="Public">
 					<Source ID="Source" Type="App_Wader.DA"/>
-					<Target ID="Target" Type="App_Wader.DA.ComponentGroup.Databases"/>
+					<Target ID="Target" Type="App_Wader.DA.InstanceGroup.Databases"/>
 				</RelationshipType>
-				<RelationshipType ID="App_Wader.DA.ComponentGroup.Databases.ContainsSQLDatabases" Base="System!System.Containment" Abstract="false" Accessibility="Internal">
-					<Source ID="Source" Type="App_Wader.DA.ComponentGroup.Databases"/>
-					<Target ID="Target" Type="MSWD!Microsoft.SQLServer.Windows.Database"/>
-				</RelationshipType>				
+							
 			</RelationshipTypes>
 		</EntityTypes>
 	</TypeDefinitions>
